@@ -17,24 +17,69 @@ export const scroll = new SmoothScroll('a[href*="/"]', {
   speedAsDuration: true,
 });
 
+const loadScript = (src) => {
+    return new Promise(function (resolve, reject) {
+      var script = document.createElement('script')
+      
+      script.src = src
+      script.addEventListener('load', function () {
+        resolve()
+      })
+      script.addEventListener('error', function (e) {
+        // reject(e)
+        // console.log(e);
+      })
+      document.body.appendChild(script)
+    //   document.body.removeChild(script)
+    })
+  };
+
+
+
 const App = () => {
-  const [landingPageData, setLandingPageData] = useState({});
+    const [loading, setLoading] = useState({});
+    const [landingPageData, setLandingPageData] = useState({});
   useEffect(() => {
     setLandingPageData(JsonData);
   }, []);
+
+  
+  
+   useEffect(() => {
+        // loadScript(`${process.env.PUBLIC_URL}/js/plugin.min.js`)
+        loadScript(`js/all.js`)
+        loadScript(`js/custom.js`)
+        loadScript(`js/timeline.min.js`)
+      setTimeout(() => {
+        setTimeout(() => {
+          setLoading(false)
+          const elements = document.querySelectorAll('.timeline');
+            if (elements.length > 0 && window.timeline) {
+                window.timeline(elements, {
+                forceVerticalMode: 700,
+                mode: 'horizontal',
+                verticalStartPosition: 'left',
+                visibleItems: 5
+                });
+            }
+        }, 500);
+        // loadScript(`${process.env.PUBLIC_URL}/js/main.js`)        
+      }, 200)
+    }, [])
+  
 
   return (
     <>
     {/* {/* LOADER */} 
 	<div id="preloader">
-  <div class="loader-container">
-    <div class="progress-br float shadow">
-      <div class="progress__item"></div>
+        <div class="loader-container">
+            <div class="progress-br float shadow">
+            <div class="progress__item"></div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 {/* {/* END LOADER */}	 
-    <div>
+    {/* <div> */}
       {/* <Navigation /> */}
       
       <Header data={landingPageData.Header} />
@@ -405,7 +450,7 @@ in the community.</p>
             </div>{/* end row */}
         </div>{/* end container */}
     </footer>{/* end footer */}
-    </div>
+    {/* </div> */}
     </>
   );
 };
