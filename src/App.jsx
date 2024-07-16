@@ -47,9 +47,9 @@ const App = () => {
   
    useEffect(() => {
         // loadScript(`${process.env.PUBLIC_URL}/js/plugin.min.js`)
-        loadScript(`${process.env.PUBLIC_URL}js/all.js`)
-        loadScript(`${process.env.PUBLIC_URL}js/custom.js`)
-        loadScript(`${process.env.PUBLIC_URL}js/timeline.min.js`)
+        loadScript(`js/all.js`)
+        loadScript(`js/custom.js`)
+        loadScript(`js/timeline.min.js`)
       setTimeout(() => {
         setTimeout(() => {
           setLoading(false)
