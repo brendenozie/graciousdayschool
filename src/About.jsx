@@ -40,7 +40,7 @@ in the community.</p>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="message-box">
                         <h4>Started in 2004</h4>
-                        <h2>Welcome to Gracious Day education centre</h2>
+                        <h2>Welcome to Gracious Day Imabet School</h2>
                         <p>A learning  centre in komarocks sector one, Embakasi East in Nairobi Kenya which offers quality 
 and affordable education  from Early Childhood  to primary level to the  low class and vulnerable children 
 in the community.</p>
@@ -67,7 +67,7 @@ in the community.</p>
 				
 				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="message-box">
-                        <h2>Gracious Day School was started  in May, 2004 with 7pupils.</h2>
+                        <h2>Gracious Day Imabet School was started  in May, 2004 with 7pupils.</h2>
                         <p>Our performance has always shown an upward trend over the years since 2012.
 We offer free1 feeding programme for  playgroup pupils ,free french and computer  lessons from grade 1 to 8.
 </p>
@@ -109,7 +109,7 @@ enable  them to be accepted in the community.</p>
 						<div class="icon-box-hmv"><i class="flaticon-history"></i></div>
 						<h3>History</h3>
 						<div class="tr-pa">H</div>
-						<p>Gracious Day School was started  in May, 2004 with 7pupils. 
+						<p>Gracious Day Imabet School was started  in May, 2004 with 7pupils. 
 Our performance has always shown an upward trend over the years since 2012.
 We offer free feeding programme for  playgroup pupils ,free french and computer  lessons from grade 1 to 8.
 We have very 

@@ -17,7 +17,7 @@ export const Carousel = (props) => {
 							<div class="row">
 								<div class="col-md-12 col-sm-12 text-right">
 									<div class="big-tagline">
-										<h2><strong>Gracious </strong> Day School</h2>
+										<h2><strong>Gracious </strong> Day Imabet School</h2>
 										<p class="lead">A dynamic center of excellence which nurtures young ones holistically and  
 enables  them to be accepted in the community. </p>
 											<a href="/contact" class="hover-btn-new"><span>Contact Us</span></a>
@@ -40,7 +40,7 @@ enables  them to be accepted in the community. </p>
 							<div class="row">
 								<div class="col-md-12 col-sm-12 text-left">
 									<div class="big-tagline">
-										<h2><strong>Gracious </strong> Day School</h2>
+										<h2><strong>Gracious </strong> Day Imabet School</h2>
 										<p class="lead">A dynamic center of excellence which nurtures young ones holistically and  
 enables  them to be accepted in the community. </p>
 											<a href="/contact" class="hover-btn-new"><span>Contact Us</span></a>
@@ -63,7 +63,7 @@ enables  them to be accepted in the community. </p>
 							<div class="row">
 								<div class="col-md-12 col-sm-12 text-center">
 									<div class="big-tagline">
-										<h2><strong>Gracious </strong> Day School</h2>
+										<h2><strong>Gracious </strong> Day Imabet School</h2>
 										<p class="lead">A dynamic center of excellence which nurtures young ones holistically and  
 enables  them to be accepted in the community. </p>
 											<a href="/contact" class="hover-btn-new"><span>Contact Us</span></a>
