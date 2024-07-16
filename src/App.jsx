@@ -62,8 +62,7 @@ const App = () => {
                 visibleItems: 5
                 });
             }
-        }, 500);
-        // loadScript(`${process.env.PUBLIC_URL}/js/main.js`)        
+        }, 500);       
       }, 200)
     }, [])
   
