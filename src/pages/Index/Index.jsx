@@ -21,6 +21,70 @@ const HomeMainbar = () => {
             <div class="container">
                 <div class="section-title row text-center">
                     <div class="col-md-8 offset-md-2">
+                        <h3>WHAT WE OFFER</h3>
+                        <p class="lead">At Gracious Imabet School, we provide a nurturing and stimulating learning environment with a focus on academic excellence and personal growth. Our dedicated educators and comprehensive curriculum ensure students receive a well-rounded education, preparing them for future success. We also offer a variety of extracurricular activities to foster creativity, teamwork, and leadership skills.</p>
+                    </div>
+                </div>{/* end title */}
+            
+               
+                <div class="services section" id="services">
+                    <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                        <div class="service-item">
+                            <div class="icon">
+                            <img src="../images/service-01.png" alt="online degrees"/>
+                            </div>
+                            <div class="main-content">
+                            <h4>CBC Curriculum</h4>
+                            <p>The CBC (Competency-Based Curriculum) emphasizes practical skills and knowledge application, fostering critical thinking, creativity, and problem-solving abilities in students.</p>
+                            <div class="main-button">
+                                <a href="#">Read More</a>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                        <div class="service-item">
+                            <div class="icon">
+                            <img src="../images/service-02.png" alt="short courses"/>
+                            </div>
+                            <div class="main-content">
+                            <h4>Coding classes</h4>
+                            <p>Our coding classes offer hands-on learning in various programming languages and technologies, empowering students to develop problem-solving skills and build real-world applications</p>
+                            <div class="main-button">
+                                <a href="#"></a>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                        <div class="service-item">
+                            <div class="icon">
+                            <img src="../images/service-03.png" alt="web experts"/>
+                            </div>
+                            <div class="main-content">
+                            <h4>Expert Teachers</h4>
+                            <p>Our expert teachers bring a wealth of knowledge and experience to the classroom, providing personalized instruction and mentorship. </p>
+                            <div class="main-button">
+                                <a href="#"></a>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+
+            </div>{/* end container */}
+        </div>
+        {/* end section */}
+
+        <div id="overviews" class="section wb">
+            <div class="container">
+                <div class="section-title row text-center">
+                    <div class="col-md-8 offset-md-2">
                         <h3>About</h3>
                         <p class="lead">A learning  centre in komarocks sector one, Embakasi East in Nairobi Kenya which offers quality 
     and affordable education  from Early Childhood  to primary level to the  low class and vulnerable children 
@@ -73,7 +137,8 @@ const HomeMainbar = () => {
                     
                 </div>{/* end row */}
             </div>{/* end container */}
-        </div>{/* end section */}
+        </div>
+        {/* end section */}
 
         <section class="section lb page-section">
             <div class="container">
