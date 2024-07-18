@@ -44,9 +44,9 @@ const Layout = ({ children }) => {
   
    useEffect(() => {
         // loadScript(`${process.env.PUBLIC_URL}/js/plugin.min.js`)
-        loadScript(`js/all.js`)
-        loadScript(`js/custom.js`)
-        loadScript(`js/timeline.min.js`)
+        // loadScript(`js/all.js`)
+        // loadScript(`js/custom.js`)
+        // loadScript(`js/timeline.min.js`)
       setTimeout(() => {
         setTimeout(() => {
           setLoading(false)
