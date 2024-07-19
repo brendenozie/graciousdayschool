@@ -39,7 +39,7 @@ const HomeMainbar = () => {
                             <h4>CBC Curriculum</h4>
                             <p>The CBC (Competency-Based Curriculum) emphasizes practical skills and knowledge application, fostering critical thinking, creativity, and problem-solving abilities in students.</p>
                             <div class="main-button">
-                                <a href="#">Read More</a>
+                                <a href="#"></a>
                             </div>
                             </div>
                         </div>
