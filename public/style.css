@@ -2894,6 +2894,7 @@ Services Style
   .services .service-item {
     position: relative;
     margin-top: 95px;
+    height: 350px;
   }
   
   .services .service-item .icon {
@@ -2920,8 +2921,9 @@ Services Style
     padding: 80px 30px 50px 30px;
     background-color: #f1f0fe;
     margin-bottom: 30px;
-    margin-right: 80px;
+    /* margin-right: 80px; */
     transition: all .4s;
+    height: 410px;
   }
   
   .services .service-item h4 {
