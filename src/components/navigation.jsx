@@ -16,15 +16,15 @@ export const Navigation = (props) => {
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
-						<li class="nav-item dropdown">
+						{/* <li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="course-grid-4.html">Course </a>
 							
-						</li>
-						<li class="nav-item dropdown">
+						</li> */}
+						{/* <li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="blog.html" >Blog </a>
 							
-						</li>
-						<li class="nav-item"><a class="nav-link" href="teachers.html">Teachers</a></li>
+						</li> */}
+						{/* <li class="nav-item"><a class="nav-link" href="teachers.html">Teachers</a></li> */}
 						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 					</ul>
 					
