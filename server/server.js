@@ -52,40 +52,39 @@ cloudinary.config({
 });
 
 // Set storage engine
-const storage = multer.diskStorage({
-  destination: './public/uploads/',
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: './public/uploads/',
+//   filename: (req, file, cb) => {
+//     cb(null, `${Date.now()}-${file.originalname}`);
+//   },
+// });
 
-// Initialize upload
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1000000 }, // Limit file size to 1MB
-}).single('image');
+// // Initialize upload
+// const upload = multer({
+//   storage: storage,
+//   limits: { fileSize: 1000000 }, // Limit file size to 1MB
+// }).single('image');
 
-// Make the public folder accessible
-app.use('/public', express.static(path.join(__dirname, 'public')));
-
+// // Make the public folder accessible
+// app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
   res.send({ message: 'Hello from the server!' });
 });
 
 
-app.post('/upload', (req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      return res.status(400).send({ message: err.message });
-    }
-    res.send({ message: 'File uploaded successfully', filePath: `/public/uploads/${req.file.filename}` });
-  });
-});
+// app.post('/upload', (req, res) => {
+//   upload(req, res, (err) => {
+//     if (err) {
+//       return res.status(400).send({ message: err.message });
+//     }
+//     res.send({ message: 'File uploaded successfully', filePath: `/public/uploads/${req.file.filename}` });
+//   });
+// });
 
 // Endpoint to get list of uploaded images
 app.get('/images', async (req, res) => {
