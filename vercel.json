@@ -26,7 +26,10 @@
        "src": "/(.*)\\.png",
        "dest": "/client/$1.png"
      }, 
-     { "src": "/[^.]+", "dest": "/client/$1", "status": 200 },    
+     { 
+      "src": "/about", 
+      "dest": "/client/$1"
+    },    
     {
       "src": "/(.*)",
       "dest": "/client/$1"
