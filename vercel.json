@@ -25,11 +25,7 @@
     {
        "src": "/(.*)\\.png",
        "dest": "/client/$1.png"
-     }, 
-     { 
-      "src": "/about", 
-      "dest": "/"
-    },    
+     },  
     {
       "src": "/(.*)",
       "dest": "/client/$1"
