@@ -29,7 +29,7 @@
      { "src": "/[^.]+", "dest": "/", "status": 200 },
     {
       "src": "/(.*)",
-      "dest": "/client/$1"
+      "dest": "/build/$1"
     }
   ]
 }
