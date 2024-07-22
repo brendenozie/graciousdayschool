@@ -72,7 +72,7 @@ cloudinary.config({
 // Serve static files from the React app
 // app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
-app.get('/home', (req, res) => {
+app.get('/api/home', (req, res) => {
   res.send({ message: 'Hello from the server!' });
 });
 
@@ -87,7 +87,7 @@ app.get('/home', (req, res) => {
 // });
 
 // Endpoint to get list of uploaded images
-app.get('/images', async (req, res) => {
+app.get('/api/images', async (req, res) => {
   try {
     const { resources } = await cloudinary.api.resources({
       type: 'upload',
