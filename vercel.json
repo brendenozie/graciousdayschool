@@ -26,10 +26,19 @@
        "src": "/(.*)\\.png",
        "dest": "/client/$1.png"
      },  
-     { "src": "/[^.]+", "dest": "/", "status": 200 },
     {
       "src": "/(.*)",
-      "dest": "/build/$1"
+      "dest": "/client/$1"
+    }
+    ,
+    {
+      "src": "/(.*)",
+      "dest": "/build/$1",
+      "status": 404
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/build/index.html"
     }
   ]
 }
