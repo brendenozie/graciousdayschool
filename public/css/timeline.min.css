@@ -174,7 +174,8 @@
 	-webkit-transition: all .8s;
 	-o-transition: all .8s;
 	transition: all .8s;
-	will-change: transform
+	will-change: transform;
+	max-height: 750px;
 }
 
 .timeline--horizontal .timeline__item {
@@ -186,7 +187,8 @@
 	-o-transition: none;
 	transition: none;
 	vertical-align: top;
-	white-space: normal
+	white-space: normal;
+	max-height: 400px;
 }
 
 .timeline--horizontal .timeline__item:after {

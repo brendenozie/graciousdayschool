@@ -2667,6 +2667,7 @@ select.mobile-device {
 }
 .footer-links-soi li{
 	display: inline-block;
+    padding: 2px;
 }
 .footer-links-soi li a{
 	background: #ffffff;
