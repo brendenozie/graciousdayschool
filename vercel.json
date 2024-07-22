@@ -25,14 +25,27 @@
     {
        "src": "/(.*)\\.png",
        "dest": "/client/$1.png"
-     },  
+     }, 
      {
-       "src": "^/blog",
-       "dest": "/blog"
-     },  
+      "src": "/blog",
+      "dest": "/client/"
+    }, 
+    {
+     "src": "/contact",
+     "dest": "/client/"
+   }, 
+   {
+    "src": "/about",
+    "dest": "/client/"
+  }, 
      {
        "src": "/(.*)",
-       "dest": "/client/"
+       "dest": "/client/$1"
      }
+    ,
+    {
+      "src": "/(.*)",
+      "dest": "/client/index.html"
+    }
   ]
 }
