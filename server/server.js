@@ -73,7 +73,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
-app.get('/api/hello', (req, res) => {
+app.get('/', (req, res) => {
   res.send({ message: 'Hello from the server!' });
 });
 
