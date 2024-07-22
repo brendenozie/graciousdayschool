@@ -77,7 +77,7 @@ const Blog = () => {
           }}
         >
           <button onClick={closeModal} style={{ float: 'right' }}>Close</button>
-          <img src={selectedImage} alt="Selected" style={{ width: '100%', height: 'auto' }} />
+          <img src={selectedImage} alt="Selected" style={{ width: '100%', height: 'auto', maxHeight: '550px' }} />
         </Modal>
       )}
       </div>{/* end container */}
