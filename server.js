@@ -6,8 +6,13 @@ const cors = require('cors');
 const app = express();
 const port = 5000;
 
+const corsOptions = {
+  origin: 'https://graciousdayschool.vercel.app', // your Vercel domain
+  optionsSuccessStatus: 200,
+};
+
 // Apply CORS middleware
-app.use(cors());
+app.use(cors(corsOptions));
 
 const CLOUDNAME= process.env.CLOUDNAME;
 const CLOUDAPIKEY= process.env.CLOUDAPIKEY;
