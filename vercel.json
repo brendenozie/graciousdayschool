@@ -16,7 +16,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/server.js"
+      "dest": "/server/server.js"
     },
     {
       "src": "^/static/(.*)",
@@ -33,16 +33,15 @@
     {
      "src": "/contact",
      "dest": "/client/"
-   }, 
-   {
-    "src": "/about",
-    "dest": "/client/"
-  }, 
-     {
+    }, 
+    {
+      "src": "/about",
+      "dest": "/client/"
+    }, 
+    {
        "src": "/(.*)",
        "dest": "/client/$1"
-     }
-    ,
+    },
     {
       "src": "/(.*)",
       "dest": "/client/index.html"
