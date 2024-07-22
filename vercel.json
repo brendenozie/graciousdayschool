@@ -28,11 +28,7 @@
      },     
     {
       "src": "/(.*)",
-      "dest": "/client/build/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/client/index.html"
+      "dest": "/client/"
     }
   ]
 }
