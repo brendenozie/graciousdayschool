@@ -32,12 +32,7 @@
      },  
      {
        "src": "/(.*)",
-       "dest": "/client/$1"
+       "dest": "/"
      }
-    ,
-    {
-      "src": "/(.*)",
-      "dest": "/client/index.html"
-    }
   ]
 }
