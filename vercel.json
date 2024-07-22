@@ -28,7 +28,7 @@
      }, 
      { 
       "src": "/about", 
-      "dest": "/about"
+      "dest": "/"
     },    
     {
       "src": "/(.*)",
