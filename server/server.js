@@ -70,7 +70,7 @@ cloudinary.config({
 
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+// app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 app.get('/home', (req, res) => {
   res.send({ message: 'Hello from the server!' });
