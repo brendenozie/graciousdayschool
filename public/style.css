@@ -1109,6 +1109,7 @@ a img.aligncenter {
 	box-shadow: 0 0px 10px rgba(0,0,0,.1);
 	position: relative;
 	overflow: hidden;
+    min-height: 345px;
 }
 .icon-box-hmv{
 	width: 100px;

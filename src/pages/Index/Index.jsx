@@ -26,13 +26,43 @@ const HomeMainbar = () => {
                     </div>
                 </div>{/* end title */}
             
+                <div class="hmv-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="inner-hmv">
+                                    <div class="icon-box-hmv"><i class="flaticon-study"></i></div>
+                                    <h3>CBC Curriculum</h3>
+                                    <div class="tr-pa">C</div>
+                                    <p>The CBC (Competency-Based Curriculum) emphasizes practical skills and knowledge application, fostering critical thinking, creativity, and problem-solving abilities in students.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="inner-hmv">
+                                    <div class="icon-box-hmv"><i class="flaticon-online"></i></div>
+                                    <h3>Coding Classes</h3>
+                                    <div class="tr-pa">C</div>
+                                    <p>Our coding classes offer hands-on learning in various programming languages and technologies, empowering students to develop problem-solving skills and build real-world applications.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="inner-hmv">
+                                    <div class="icon-box-hmv"><i class="flaticon-achievement"></i></div>
+                                    <h3>Expert Teachers</h3>
+                                    <div class="tr-pa">E</div>
+                                    <p>Our expert teachers bring a wealth of knowledge and experience to the classroom, providing personalized instruction and mentorship.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                
-                <div class="services section" id="services">
+                {/* <div class="services hmv-box section" id="services">
                     <div class="container">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6 col-12">
                         <div class="service-item">
-                            <div class="icon">
+                            <div class="icon icon-box-hmv">
                             <img src="../images/service-01.png" alt="online degrees"/>
                             </div>
                             <div class="main-content">
@@ -44,13 +74,13 @@ const HomeMainbar = () => {
                             </div>
                         </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6 col-12">
                         <div class="service-item">
-                            <div class="icon">
+                            <div class="icon icon-box-hmv">
                             <img src="../images/service-02.png" alt="short courses"/>
                             </div>
                             <div class="main-content">
-                            <h4>Coding classes</h4>
+                            <h4>Coding Classes</h4>
                             <p>Our coding classes offer hands-on learning in various programming languages and technologies, empowering students to develop problem-solving skills and build real-world applications</p>
                             <div class="main-button">
                                 <a href="#"></a>
@@ -58,9 +88,9 @@ const HomeMainbar = () => {
                             </div>
                         </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6 col-12">
                         <div class="service-item">
-                            <div class="icon">
+                            <div class="icon icon-box-hmv">
                             <img src="../images/service-03.png" alt="web experts"/>
                             </div>
                             <div class="main-content">
@@ -74,7 +104,7 @@ const HomeMainbar = () => {
                         </div>
                     </div>
                     </div>
-                </div>
+                </div> */}
 
 
             </div>{/* end container */}

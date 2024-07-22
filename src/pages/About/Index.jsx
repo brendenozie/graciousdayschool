@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Header } from "./components/header";
-// import { Features } from "./components/features";
-// import { About } from "./components/about";
-// import { Services } from "./components/services";
-// import { Gallery } from "./components/gallery";
-// import { Testimonials } from "./components/testimonials";
-// import { Team } from "./components/Team";
-// import { Contact } from "./components/contact";
-import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
-import "./App.css";
-import { Carousel } from "./components/courousel";
+import "./Index.css";
 
 export const scroll = new SmoothScroll('a[href*="/"]', {
   speed: 1000,
@@ -18,10 +8,7 @@ export const scroll = new SmoothScroll('a[href*="/"]', {
 });
 
 const About = () => {
-  const [landingPageData, setLandingPageData] = useState({});
-  useEffect(() => {
-    setLandingPageData(JsonData);
-  }, []);
+  
 
   return (
     <>
@@ -30,9 +17,7 @@ const About = () => {
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
                     <h3>About</h3>
-                    <p class="lead">A learning  centre in komarocks sector one, Embakasi East in Nairobi Kenya which offers quality 
-and affordable education  from Early Childhood  to primary level to the  low class and vulnerable children 
-in the community.</p>
+                    <p class="lead">A learning  centre in komarocks sector one, Embakasi East in Nairobi Kenya which offers quality and affordable education  from Early Childhood  to primary level to the  low class and vulnerable children in the community.</p>
                 </div>
             </div>{/* end title */}
         
@@ -41,12 +26,9 @@ in the community.</p>
                     <div class="message-box">
                         <h4>Started in 2004</h4>
                         <h2>Welcome to Gracious Day Imabet School</h2>
-                        <p>A learning  centre in komarocks sector one, Embakasi East in Nairobi Kenya which offers quality 
-and affordable education  from Early Childhood  to primary level to the  low class and vulnerable children 
-in the community.</p>
+                        <p>A learning  centre in komarocks sector one, Embakasi East in Nairobi Kenya which offers quality and affordable education  from Early Childhood  to primary level to the  low class and vulnerable children in the community.</p>
 
-                        <p> To impact sound knowledge and firm foundation to learners which will enable them to acquire good personality and
- give back to the community positively. </p>
+                        <p> To impact sound knowledge and firm foundation to learners which will enable them to acquire good personality and give back to the community positively. </p>
 
                         <a href="#" class="hover-btn-new orange"><span>Learn More</span></a>
                     </div>{/* end messagebox */}
@@ -68,12 +50,9 @@ in the community.</p>
 				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="message-box">
                         <h2>Gracious Day Imabet School was started  in May, 2004 with 7pupils.</h2>
-                        <p>Our performance has always shown an upward trend over the years since 2012.
-We offer free1 feeding programme for  playgroup pupils ,free french and computer  lessons from grade 1 to 8.
-</p>
+                        <p>Our performance has always shown an upward trend over the years since 2012.We offer free1 feeding programme for  playgroup pupils ,free french and computer  lessons from grade 1 to 8.</p>
 
-                        <p> We have very 
-qualified staff which is well conversant with the new CBC.</p>
+                        <p> We have very qualified staff which is well conversant with the new CBC.</p>
 
                         <a href="#" class="hover-btn-new orange"><span>Learn More</span></a>
                     </div>{/* end messagebox */}
@@ -91,8 +70,7 @@ qualified staff which is well conversant with the new CBC.</p>
 						<div class="icon-box-hmv"><i class="flaticon-achievement"></i></div>
 						<h3>Mission</h3>
 						<div class="tr-pa">M</div>
-						<p>To impact sound knowledge and firm foundation to learners which will enable them to acquire good personality and
- give back to the community positively.</p>
+						<p>To impact sound knowledge and firm foundation to learners which will enable them to acquire good personality and give back to the community positively.</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 col-12">
@@ -100,8 +78,7 @@ qualified staff which is well conversant with the new CBC.</p>
 						<div class="icon-box-hmv"><i class="flaticon-eye"></i></div>
 						<h3>Vision</h3>
 						<div class="tr-pa">V</div>
-						<p>To be a dynamic center of excellence which nurture young ones holistically and  
-enable  them to be accepted in the community.</p>
+						<p>To be a dynamic center of excellence which nurture young ones holistically and  enable  them to be accepted in the community.</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 col-12">
@@ -109,18 +86,14 @@ enable  them to be accepted in the community.</p>
 						<div class="icon-box-hmv"><i class="flaticon-history"></i></div>
 						<h3>History</h3>
 						<div class="tr-pa">H</div>
-						<p>Gracious Day Imabet School was started  in May, 2004 with 7pupils. 
-Our performance has always shown an upward trend over the years since 2012.
-We offer free feeding programme for  playgroup pupils ,free french and computer  lessons from grade 1 to 8.
-We have very 
-qualified staff which is well conversant with the new CBC.</p>
+						<p>Gracious Day Imabet School was started  in May, 2004 with 7pupils. Our performance has always shown an upward trend over the years since 2012.We offer free feeding programme for  playgroup pupils ,free french and computer  lessons from grade 1 to 8.We have very qualified staff which is well conversant with the new CBC.</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-    <div id="testimonials" class="parallax section db parallax-off" style="background-image:url('images/parallax_04.jpg');">
+    <div id="testimonials" class="parallax section db parallax-off" style={{backgroundImage:"url('images/parallax_04.jpg')"}}>
         <div class="container">
             <div class="section-title text-center">
                 <h3>Testimonials</h3>
@@ -215,7 +188,7 @@ qualified staff which is well conversant with the new CBC.</p>
     <div class="parallax section dbcolor">
         <div class="container">
             <div class="row logos">
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
+                {/* <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
                     <a href="#"><img src="images/logo_01.png" alt="" class="img-repsonsive"/></a>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
@@ -232,7 +205,7 @@ qualified staff which is well conversant with the new CBC.</p>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
                     <a href="#"><img src="images/logo_06.png" alt="" class="img-repsonsive"/></a>
-                </div>
+                </div> */}
             </div>{/* end row */}
         </div>{/* end container */}
     </div>{/* end section */}
@@ -240,4 +213,4 @@ qualified staff which is well conversant with the new CBC.</p>
   );
 };
 
-export default App;
+export default About;
