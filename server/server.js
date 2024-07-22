@@ -14,6 +14,9 @@ const corsOptions = {
 // Apply CORS middleware
 app.use(cors(corsOptions));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const CLOUDNAME= process.env.CLOUDNAME;
 const CLOUDAPIKEY= process.env.CLOUDAPIKEY;
 const CLOUDSECRET= process.env.CLOUDSECRET;
@@ -41,6 +44,20 @@ const upload = multer({
 
 // Make the public folder accessible
 app.use('/public', express.static(path.join(__dirname, 'public')));
+
+
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+app.get('/api/hello', (req, res) => {
+  res.send({ message: 'Hello from the server!' });
+});
+
+// All other GET requests not handled before will return the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
 
 app.post('/upload', (req, res) => {
   upload(req, res, (err) => {
