@@ -26,10 +26,14 @@
        "src": "/(.*)\\.png",
        "dest": "/client/$1.png"
      },  
-    {
-      "src": "/(.*)",
-      "dest": "/client/$1"
-    }
+     {
+       "src": "^/blog",
+       "dest": "/blog"
+     },  
+     {
+       "src": "/(.*)",
+       "dest": "/client/$1"
+     }
     ,
     {
       "src": "/(.*)",
