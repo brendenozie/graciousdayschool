@@ -33,12 +33,7 @@
     ,
     {
       "src": "/(.*)",
-      "dest": "/build/$1",
-      "status": 404
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/build/index.html"
+      "dest": "/client/index.html"
     }
   ]
 }
