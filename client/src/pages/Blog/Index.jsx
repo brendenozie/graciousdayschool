@@ -10,7 +10,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('https://graciousdayschool.vercel.app/images');
+        const response = await axios.get('https://graciousdayschool.vercel.app/api/images');
         const imageUrls = response.data.map(image => image.secure_url);
         setUploadedImages(imageUrls);
       } catch (error) {
