@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Footer } from "./components/footer";
 import { Contact } from "./components/contact";
 import About from "./pages/About/Index";
+import Blog from "./pages/Blog/Index";
+import UploadGr from "./pages/UploadGraciousImage/Index";
 // import { useSelector } from "react-redux";
 
 export const scroll = new SmoothScroll('a[href*="/"]', {
@@ -108,6 +110,8 @@ const App = () => {
         <Route exact path="/" element={<HomeMainbar/>}/>
         <Route exact path="/about" element={<About/>}/>
         <Route exact path="/contact" element={<Contact/>}/>
+        <Route exact path="/blog" element={<Blog/>}/>
+        <Route exact path="/UploadGr" element={<UploadGr/>}/>
           {/* <Route exact path="/login" element={<Login/>}/>
           <Route exact path="/recovery-password" element={<RecoveryPassword/>}/> */}
           {/* <Route path="*" element={<NotFound/>}/> */}
