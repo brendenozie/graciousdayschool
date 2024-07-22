@@ -56,21 +56,30 @@ const UploadGr = () => {
     <div>
       <div id="overviews" class="section lb">
         <div class="container">
-            <div class="section-title row text-center">
+            <div class="section-title row">
                 <div class="col-md-8 offset-md-2">
                     <h3>Upload Images</h3>
                     <p class="lead"></p>
                 </div>
             </div>{/* end title */}
         
-        
-      <input 
-        type="file" 
-        accept="image/*" 
-        multiple 
-        onChange={handleImageChange} 
-      />
-      <button class="orange" onClick={handleUpload}>Upload</button>
+            <div class="section-title row ">
+            <div class="col-md-8 offset-md-2">
+              <h5>1. Click here to select your images </h5>
+              <h5>2. Click upload to upload your images </h5>
+              <div style={{marginTop: "15px"}}>
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  multiple 
+                  onChange={handleImageChange} 
+                />
+              </div>
+              <div style={{marginTop: "15px"}}>
+              <button class="orange" onClick={handleUpload}>Upload</button>
+              </div>
+            </div>
+      </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
         {uploadedImages.map((image, index) => (
           <div class="post-media wow fadeIn">
@@ -102,7 +111,7 @@ const UploadGr = () => {
           }}
         >
           <button onClick={closeModal} style={{ float: 'right' }}>Close</button>
-          <img src={selectedImage} alt="Selected" style={{ width: '100%', height: 'auto' }} />
+          <img src={selectedImage} alt="Selected" style={{ width: '100%', height: 'auto', maxHeight: '550px' }} />
         </Modal>
       )}
       </div>{/* end container */}
