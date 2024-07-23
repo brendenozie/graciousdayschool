@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
 import Loader from '../../components/loader';
 
@@ -9,10 +10,19 @@ const UploadGr = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const deleteFile = async (publicId) => {
+    try {
+      await axios.post('/delete', { publicId });
+      setUploadedImages((prevUrls) => prevUrls.filter(url => !url.includes(publicId)));
+    } catch (error) {
+      console.error('Error deleting file:', error);
+    }
+  };
+
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/images');
+        const response = await axios.get('https://graciousdayschool.vercel.app/api/images');
         const imageUrls = response.data.map(image => image.secure_url);
         setUploadedImages(imageUrls);
       } catch (error) {
@@ -79,7 +89,7 @@ const UploadGr = () => {
               <div style={{marginTop: "15px"}}>
                 <input 
                   type="file" 
-                  accept="image/*" 
+                   accept="image/jpeg,image/png,image/gif,video/mp4,video/webm"
                   multiple 
                   onChange={handleImageChange} 
                 />
@@ -91,14 +101,20 @@ const UploadGr = () => {
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
         {uploadedImages.map((image, index) => (
+
           <div class="post-media wow fadeIn">
-            <img class="img-fluid img-rounded"
+            {image.endsWith('.mp4') ? (
+              <Video cloudName="djjpfyknl" publicId={image} controls />
+            ) : (
+              <img class="img-fluid img-rounded"
               key={index} 
               src={image} 
               alt={`upload-${index}`} 
               style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
               onClick={() => openModal(image)}
             />
+            )}
+            
           </div>
         ))}
       </div>
@@ -120,6 +136,7 @@ const UploadGr = () => {
           }}
         >
           <button onClick={closeModal} style={{ float: 'right' }}>Close</button>
+          <button onClick={deleteFile(selectedImage)} style={{ float: 'left' }}>Delete</button>
           <img src={selectedImage} alt="Selected" style={{ width: '100%', height: 'auto', maxHeight: '550px' }} />
         </Modal>
       )}

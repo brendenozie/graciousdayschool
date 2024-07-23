@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.21.1",
     "cloudinary": "^2.3.0",
+    "cloudinary-react": "^1.8.1",
     "cors": "^2.8.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

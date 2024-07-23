@@ -51,6 +51,15 @@ cloudinary.config({
   api_secret: 'aSs_JB88IgRKKbe-Mpwl2xKIDI8'
 });
 
+const deleteFile = async (publicId) => {
+  try {
+    const result = await cloudinary.uploader.destroy(publicId);
+    return result;
+  } catch (error) {
+    throw new Error('Failed to delete file');
+  }
+};
+
 // Set storage engine
 // const storage = multer.diskStorage({
 //   destination: './public/uploads/',
@@ -76,6 +85,16 @@ app.get('/api/home', (req, res) => {
   res.send({ message: 'Hello from the server!' });
 });
 
+app.post('/delete', async (req, res) => {
+  const { publicId } = req.body;
+
+  try {
+    const result = await deleteFile(publicId);
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 // app.post('/upload', (req, res) => {
 //   upload(req, res, (err) => {
