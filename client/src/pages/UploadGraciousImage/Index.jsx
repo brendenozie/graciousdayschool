@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , Suspense, lazy }  from 'react';
 import axios from 'axios';
 import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
 import Loader from '../../components/loader';
-import LazyImage from '../../components/LazyImage';
+const LazyImage = lazy(() => import('../../components/LazyImage'));
 
 
 const url = `https://api.cloudinary.com/v1_1/djjpfyknl/image/upload`;
@@ -159,39 +159,38 @@ const UploadGr = () => {
       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '120px' }}>
         {uploadedImages.map((image, index) => (
           <div class="post-media wow fadeIn">
-
+            <Suspense fallback={<div>Loading...</div>}>
               <LazyImage src={image}
                         alt="Sample Image"
                         fallbackSrc={image}
                         onClick={() => openModal(image)}
                         style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}/>
-          
-
-
-            {/* {image.endsWith('.mp4') ? (
-              <Video cloudName="djjpfyknl" publicId={image} controls 
-              class="img-fluid img-rounded"
-              key={index} 
-              src={image} 
-              alt={`upload-${index}`} 
-              style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
-              onClick={() => openModal(image)}/>
-            ) : (
-            //   <img class="img-fluid img-rounded"
-            //   key={index} 
-            //   src={image} 
-            //   alt={`upload-${index}`} 
-            //   style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
-            //   onClick={() => openModal(image)}
-            // />
-            <Image cloudName="djjpfyknl" publicId={image}
-              class="img-fluid img-rounded"
-              key={index} 
-              src={image} 
-              alt={`upload-${index}`} 
-              style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
-              onClick={() => openModal(image)} />
-            )} */}
+        
+                {/* {image.endsWith('.mp4') ? (
+                  <Video cloudName="djjpfyknl" publicId={image} controls 
+                  class="img-fluid img-rounded"
+                  key={index} 
+                  src={image} 
+                  alt={`upload-${index}`} 
+                  style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+                  onClick={() => openModal(image)}/>
+                ) : (
+                //   <img class="img-fluid img-rounded"
+                //   key={index} 
+                //   src={image} 
+                //   alt={`upload-${index}`} 
+                //   style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+                //   onClick={() => openModal(image)}
+                // />
+                <Image cloudName="djjpfyknl" publicId={image}
+                  class="img-fluid img-rounded"
+                  key={index} 
+                  src={image} 
+                  alt={`upload-${index}`} 
+                  style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+                  onClick={() => openModal(image)} />
+                )} */}
+            </Suspense>
             
           </div>
         ))}

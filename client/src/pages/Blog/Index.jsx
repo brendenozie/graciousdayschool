@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , Suspense, lazy }  from 'react';
 import axios from 'axios';
 import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
-import LazyImage from '../../components/LazyImage';
+const LazyImage = lazy(() => import('../../components/LazyImage'));
 
 const Blog = () => {
   const [images, setImages] = useState([]);
@@ -51,6 +51,7 @@ const Blog = () => {
       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
         {uploadedImages.map((image, index) => (
           <div class="post-media wow fadeIn">
+            <Suspense fallback={<div>Loading...</div>}>
             <LazyImage src={image}
                         alt="Sample Image"
                         fallbackSrc={image}
@@ -80,6 +81,7 @@ const Blog = () => {
             style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
             onClick={() => openModal(image)} />
           )} */}
+          </Suspense>
           
         </div>
           // <div class="post-media wow fadeIn">
