@@ -1,11 +1,14 @@
 import React from 'react';
 import './loader.css';
 
-const Loader = () => {
+const Loader = ({ style, ...props }) => {
   return (
-    <div className="loader-container">
-      <div className="loader"></div>
+    <>
+    <div className="loader-container" style={style}>
+      <div className="loader"></div>      
     </div>
+    
+    </>
   );
 };
 

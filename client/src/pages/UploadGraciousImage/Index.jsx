@@ -3,12 +3,48 @@ import axios from 'axios';
 import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
 import Loader from '../../components/loader';
+import LazyImage from '../../components/LazyImage';
+
+
+const url = `https://api.cloudinary.com/v1_1/djjpfyknl/image/upload`;
+const uploadPreset = 'school';
+
+const uploadImages = async (images) => {
+  const uploadResponses = await Promise.all(
+    images.map(async (image) => {
+      const formData = new FormData();
+      formData.append('file', image);
+      formData.append('upload_preset', uploadPreset);
+
+      try {
+        const response = await axios.post(url, formData);
+        return { success: true, data: response.data };
+      } catch (error) {
+        return { success: false, error: error.message };
+      }
+    })
+  );
+
+  return uploadResponses;
+};
 
 const UploadGr = () => {
   const [images, setImages] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const fetchImages = async () => {
+    try {
+      const response = await axios.get('https://graciousdayschool.vercel.app/api/images');
+      const imageUrls = response.data.map(image => image.secure_url);
+      setUploadedImages(imageUrls);
+    } catch (error) {
+      console.error('Error fetching images:', error);
+    }
+  };
+
 
   const deleteFile = async (publicId) => {
     try {
@@ -17,23 +53,15 @@ const UploadGr = () => {
       setUploadedImages((prevUrls) => prevUrls.filter(url => !url.includes(publicId)));
       setLoading(false);
       setSelectedImage(null);
+      fetchImages();
     } catch (error) {
+      setError(true);
+      setLoading(false);      
       console.error('Error deleting file:', error);
-      setLoading(false);
     }
   };
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await axios.get('https://graciousdayschool.vercel.app/api/images');
-        const imageUrls = response.data.map(image => image.secure_url);
-        setUploadedImages(imageUrls);
-      } catch (error) {
-        console.error('Error fetching images:', error);
-      }
-    };
-
+  useEffect(() => {    
     fetchImages();
   }, []);
 
@@ -45,23 +73,44 @@ const UploadGr = () => {
   const handleUpload = async () => {
 
     setLoading(true);
+    setError(false);
 
-    const url = `https://api.cloudinary.com/v1_1/djjpfyknl/image/upload`;
+    // const url = `https://api.cloudinary.com/v1_1/djjpfyknl/image/upload`;
 
-    const uploadPreset = 'school';
+    // const uploadPreset = 'school';
 
-    const uploadResponses = await Promise.all(
-      images.map(image => {
-        const formData = new FormData();
-        formData.append('file', image);
-        formData.append('upload_preset', uploadPreset);
-        return axios.post(url, formData);
-      })
-    );
+    // const uploadResponses = await Promise.all(
+    //   images.map(image => {
+    //     const formData = new FormData();
+    //     formData.append('file', image);
+    //     formData.append('upload_preset', uploadPreset);
+    //     return axios.post(url, formData);
+    //   }
+    // )
+    // );
 
-    const newUploadedImages = uploadResponses.map(response => response.data.secure_url);
-    setUploadedImages([...uploadedImages, ...newUploadedImages]);
-    setLoading(false);
+    // const newUploadedImages = uploadResponses.map(response => response.data.secure_url);
+    // setUploadedImages([...uploadedImages, ...newUploadedImages]);
+    // setLoading(false);
+
+    uploadImages(images).then((results) => {
+      results.forEach((result, index) => {
+        if (result.success) {
+          console.log(`Image ${index + 1} uploaded successfully:`, result.data);
+          setUploadedImages([...uploadedImages, ...result.data.secure_url])
+          setLoading(false);
+          setError(false);
+          fetchImages();
+        } else {
+          console.error(`Error uploading image ${index + 1}:`, result.error);
+          setError(true);
+          setLoading(false);   
+        }
+      });
+      if(!loading && !error ){
+        alert('Uploaded Successfuly');
+      }
+    });
   };
 
   const openModal = (image) => {
@@ -75,7 +124,7 @@ const UploadGr = () => {
   return (
 
     <>
-    {loading ? <Loader /> :
+    {
     <div>
       <div id="overviews" class="section lb">
         <div class="container">
@@ -99,14 +148,27 @@ const UploadGr = () => {
                 />
               </div>
               <div style={{marginTop: "15px"}}>
-              <button class="orange" onClick={handleUpload}>Upload</button>
+              {!loading && error ? <div>Too Large Cannot Upload</div> : <div></div>}
+              {loading && !error ? <div style={{position:'fixed', marginTop:"-70px"}}>
+                    <Loader style={{ width: '90px', height: '70px'}}/>
+                    <p style={{fontSize:"small",fontWeight:"bold",position: 'relative', zIndex: '11400'}}>UpLoading</p>
+                 </div> :<button class="orange" onClick={handleUpload}>Upload</button>}
               </div>
             </div>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '120px' }}>
         {uploadedImages.map((image, index) => (
           <div class="post-media wow fadeIn">
-            {image.endsWith('.mp4') ? (
+
+              <LazyImage src={image}
+                        alt="Sample Image"
+                        fallbackSrc={image}
+                        onClick={() => openModal(image)}
+                        style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}/>
+          
+
+
+            {/* {image.endsWith('.mp4') ? (
               <Video cloudName="djjpfyknl" publicId={image} controls 
               class="img-fluid img-rounded"
               key={index} 
@@ -129,7 +191,7 @@ const UploadGr = () => {
               alt={`upload-${index}`} 
               style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
               onClick={() => openModal(image)} />
-            )}
+            )} */}
             
           </div>
         ))}

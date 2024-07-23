@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
+import LazyImage from '../../components/LazyImage';
 
 const Blog = () => {
   const [images, setImages] = useState([]);
@@ -50,7 +51,12 @@ const Blog = () => {
       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
         {uploadedImages.map((image, index) => (
           <div class="post-media wow fadeIn">
-          {image.endsWith('.mp4') ? (
+            <LazyImage src={image}
+                        alt="Sample Image"
+                        fallbackSrc={image}
+                        onClick={() => openModal(image)}
+                        style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}/>
+          {/* {image.endsWith('.mp4') ? (
             <Video cloudName="djjpfyknl" publicId={image} controls 
             class="img-fluid img-rounded"
             key={index} 
@@ -73,7 +79,7 @@ const Blog = () => {
             alt={`upload-${index}`} 
             style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
             onClick={() => openModal(image)} />
-          )}
+          )} */}
           
         </div>
           // <div class="post-media wow fadeIn">
