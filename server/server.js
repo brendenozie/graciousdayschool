@@ -85,7 +85,7 @@ app.get('/api/home', (req, res) => {
   res.send({ message: 'Hello from the server!' });
 });
 
-app.post('/delete', async (req, res) => {
+app.post('/api/delete', async (req, res) => {
   const { publicId } = req.body;
 
   try {

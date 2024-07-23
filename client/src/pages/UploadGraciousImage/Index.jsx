@@ -13,12 +13,12 @@ const UploadGr = () => {
   const deleteFile = async (publicId) => {
     try {
       setLoading(true);
-      await axios.post('/delete', { publicId });
+      await axios.post('https://graciousdayschool.vercel.app/api/delete', { publicId });
       setUploadedImages((prevUrls) => prevUrls.filter(url => !url.includes(publicId)));
-      setLoading(true);
+      setLoading(false);
     } catch (error) {
       console.error('Error deleting file:', error);
-      setLoading(true);
+      setLoading(false);
     }
   };
 
@@ -139,7 +139,7 @@ const UploadGr = () => {
           }}
         >
           <button onClick={closeModal} style={{ float: 'right' }}>Close</button>
-          <button onClick={deleteFile(selectedImage)} style={{ float: 'left' }}>Delete</button>
+          <button onClick={() => deleteFile(selectedImage)} style={{ float: 'left' }}>Delete</button>
           <img src={selectedImage} alt="Selected" style={{ width: '100%', height: 'auto', maxHeight: '550px' }} />
         </Modal>
       )}
