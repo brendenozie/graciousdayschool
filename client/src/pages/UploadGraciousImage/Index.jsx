@@ -16,6 +16,7 @@ const UploadGr = () => {
       await axios.post('https://graciousdayschool.vercel.app/api/delete', { publicId });
       setUploadedImages((prevUrls) => prevUrls.filter(url => !url.includes(publicId)));
       setLoading(false);
+      setSelectedImage(null);
     } catch (error) {
       console.error('Error deleting file:', error);
       setLoading(false);
