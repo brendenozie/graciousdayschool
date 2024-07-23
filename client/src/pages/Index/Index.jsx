@@ -116,7 +116,7 @@ const HomeMainbar = () => {
                 <div class="section-title row text-center">
                     <div class="col-md-8 offset-md-2">
                         <h3>About</h3>
-                        <p class="lead">A learning  centre in komarocks sector one, Embakasi East in Nairobi Kenya which offers quality 
+                        <p class="lead">A learning  centre in komarocks sector one and in kayole, Embakasi East in Nairobi Kenya which offers quality 
     and affordable education  from Early Childhood  to primary level to the  low class and vulnerable children 
     in the community.</p>
                     </div>
@@ -126,7 +126,7 @@ const HomeMainbar = () => {
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="message-box">
                             <h4>Started in 2004</h4>
-                            <h2>Welcome to Gracious Day education centre</h2>
+                            <h2>Welcome to Gracious Imabet Day education centre</h2>
                             <p>A learning  centre in komarocks sector one, Embakasi East in Nairobi Kenya which offers quality 
     and affordable education  from Early Childhood  to primary level to the  low class and vulnerable children 
     in the community.</p>
@@ -153,7 +153,7 @@ const HomeMainbar = () => {
                     
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="message-box">
-                            <h2>Gracious Day School was started  in May, 2004 with 7pupils.</h2>
+                            <h2>Gracious Imabet Day School was started  in May, 2004 with 7pupils.</h2>
                             <p>Our performance has always shown an upward trend over the years since 2012.
     We offer free1 feeding programme for  playgroup pupils ,free french and computer  lessons from grade 1 to 8.
     </p>
@@ -175,7 +175,7 @@ const HomeMainbar = () => {
                 <div class="section-title row text-center">
                     <div class="col-md-8 offset-md-2">
                         <h3>Our history</h3>
-                        <p class="lead">Gracious Day School was started  in May, 2004 with 7pupils.</p>
+                        <p class="lead">Gracious Imabet Day School was started  in May, 2004 with 7pupils.</p>
                     </div>
                 </div>{/* end title */}
                 <div class="timeline">
@@ -185,14 +185,14 @@ const HomeMainbar = () => {
                             <div class="timeline__item">
                                 <div class="timeline__content img-bg-03">
                                     <h2>2004</h2>
-                                    <p>Gracious Day School was established in May with 7 pupils.</p>
+                                    <p>Gracious Imabet Day School was established in May with 7 pupils.</p>
                                 </div>
                             </div>
 
                             <div class="timeline__item">
                                 <div class="timeline__content img-bg-03">
                                     <h2>2005</h2>
-                                    <p>First cohort of pupils completed their first year at Gracious Day School.</p>
+                                    <p>First cohort of pupils completed their first year at Gracious Imabet  Day School.</p>
                                 </div>
                             </div>
 
@@ -300,7 +300,7 @@ const HomeMainbar = () => {
             <div class="container">
                 <div class="section-title text-center">
                     <h3>Testimonials</h3>
-                    <p>I am incredibly grateful for the education and support I received at Gracious Day. The teachers here are dedicated and passionate about their subjects, making learning both engaging and effective. The school's commitment to fostering a nurturing and inclusive environment allowed me to thrive academically and personally.</p>
+                    <p>I am incredibly grateful for the education and support I received at Gracious Imabet Day. The teachers here are dedicated and passionate about their subjects, making learning both engaging and effective. The school's commitment to fostering a nurturing and inclusive environment allowed me to thrive academically and personally.</p>
                 </div>{/* end title */}
 
                 <div class="row">
@@ -313,7 +313,7 @@ const HomeMainbar = () => {
                                 </div>
                                 <div class="desc">
                                     <h3><i class="fa fa-quote-left"></i> Wonderful Support!</h3>
-                                    <p class="lead">I am incredibly grateful for the education and support I received at Gracious Day. The teachers' dedication and passion made learning both engaging and effective.</p>
+                                    <p class="lead">I am incredibly grateful for the education and support I received at Gracious Imabet  Day. The teachers' dedication and passion made learning both engaging and effective.</p>
                                 </div>
                                 {/* end testi-meta */}
                             </div>
@@ -339,7 +339,7 @@ const HomeMainbar = () => {
                                 </div>
                                 <div class="desc">
                                     <h3><i class="fa fa-quote-left"></i> Great & Talented Team!</h3>
-                                    <p class="lead">The friendships I formed and the experiences I gained have left a lasting positive impact on my life. I wholeheartedly recommend Gracious Day to any student looking for a well-rounded and enriching educational experience. </p>
+                                    <p class="lead">The friendships I formed and the experiences I gained have left a lasting positive impact on my life. I wholeheartedly recommend Gracious Imabet Day to any student looking for a well-rounded and enriching educational experience. </p>
                                 </div>
                                 {/* end testi-meta */}
                             </div>
