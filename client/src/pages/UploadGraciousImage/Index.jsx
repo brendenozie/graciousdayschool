@@ -12,10 +12,13 @@ const UploadGr = () => {
 
   const deleteFile = async (publicId) => {
     try {
+      setLoading(true);
       await axios.post('/delete', { publicId });
       setUploadedImages((prevUrls) => prevUrls.filter(url => !url.includes(publicId)));
+      setLoading(true);
     } catch (error) {
       console.error('Error deleting file:', error);
+      setLoading(true);
     }
   };
 
