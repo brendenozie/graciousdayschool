@@ -109,9 +109,8 @@ const Blog = () => {
           {selectedImage.endsWith('.mp4') ? (
             <Video cloudName="djjpfyknl" publicId={selectedImage} controls 
             class="img-fluid img-rounded"
-            key={index} 
             src={selectedImage} 
-            alt={`upload-${index}`} 
+            alt={`view`} 
             style={{ width: '100%', height: 'auto', maxHeight: '550px' }}
             onClick={() => openModal(selectedImage)}/>
           ) : (
@@ -124,9 +123,8 @@ const Blog = () => {
           // />
           <Image cloudName="djjpfyknl" publicId={selectedImage}
             class="img-fluid img-rounded"
-            key={index} 
             src={selectedImage} 
-            alt={`upload-${index}`} 
+            alt={`view`} 
             style={{ width: '100%', height: 'auto', maxHeight: '550px' }}
             onClick={() => openModal(selectedImage)} />
           )}
