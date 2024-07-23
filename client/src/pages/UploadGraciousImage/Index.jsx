@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import Loader from '../../components/loader';
 
 const UploadGr = () => {
   const [images, setImages] = useState([]);
@@ -28,8 +29,11 @@ const UploadGr = () => {
   };
 
   const handleUpload = async () => {
+
     setLoading(true);
+
     const url = `https://api.cloudinary.com/v1_1/djjpfyknl/image/upload`;
+
     const uploadPreset = 'school';
 
     const uploadResponses = await Promise.all(
