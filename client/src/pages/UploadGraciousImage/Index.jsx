@@ -6,6 +6,7 @@ const UploadGr = () => {
   const [images, setImages] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -27,6 +28,7 @@ const UploadGr = () => {
   };
 
   const handleUpload = async () => {
+    setLoading(true);
     const url = `https://api.cloudinary.com/v1_1/djjpfyknl/image/upload`;
     const uploadPreset = 'school';
 
@@ -41,6 +43,7 @@ const UploadGr = () => {
 
     const newUploadedImages = uploadResponses.map(response => response.data.secure_url);
     setUploadedImages([...uploadedImages, ...newUploadedImages]);
+    setLoading(false);
   };
 
   const openModal = (image) => {
@@ -53,6 +56,8 @@ const UploadGr = () => {
 
   return (
 
+    <>
+    {loading ? <Loader /> :
     <div>
       <div id="overviews" class="section lb">
         <div class="container">
@@ -117,6 +122,8 @@ const UploadGr = () => {
       </div>{/* end container */}
       </div>{/* end section */}
     </div>
+}
+    </>
   );
 };
 
