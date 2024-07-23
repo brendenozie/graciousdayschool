@@ -15,20 +15,18 @@ export const Contact = (props) => {
     const { name, value } = e.target;
     setState((prevState) => ({ ...prevState, [name]: value }));
   };
+
   const clearState = () => setState({ ...initialState });
   
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, email, message);
     
-    {/* replace below with your own Service ID, Template ID and Public Key from your EmailJS account */ }
-    // .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", e.target, "YOUR_PUBLIC_KEY")
     emailjs
-      .sendForm(`${process.env.YOUR_SERVICE_ID}`, `${process.env.YOUR_TEMPLATE_ID}`, e.target, `${process.env.SENDPUBLICKEY}`)
+      .sendForm(`service_9r0j2ke`, `template_ise2027`, e.target, `3Obnpp-idOkia84VA`)
       .then(
         (result) => {
-          console.log(result.text);
+          alert("Thank you message has been sent");
           clearState();
         },
         (error) => {
@@ -57,6 +55,7 @@ export const Contact = (props) => {
                         type="text"
                         id="name"
                         name="name"
+                        value={name}
                         className="form-control"
                         placeholder="Name"
                         required
@@ -69,6 +68,7 @@ export const Contact = (props) => {
                     <div className="form-group">
                       <input
                         type="email"
+                        value={email}
                         id="email"
                         name="email"
                         className="form-control"
@@ -83,6 +83,7 @@ export const Contact = (props) => {
                 <div className="form-group">
                   <textarea
                     name="message"
+                    value={message}
                     id="message"
                     className="form-control"
                     rows="4"
