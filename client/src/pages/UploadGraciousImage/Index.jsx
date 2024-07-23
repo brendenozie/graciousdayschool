@@ -105,18 +105,30 @@ const UploadGr = () => {
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
         {uploadedImages.map((image, index) => (
-
           <div class="post-media wow fadeIn">
             {image.endsWith('.mp4') ? (
-              <Video cloudName="djjpfyknl" publicId={image} controls />
-            ) : (
-              <img class="img-fluid img-rounded"
+              <Video cloudName="djjpfyknl" publicId={image} controls 
+              class="img-fluid img-rounded"
               key={index} 
               src={image} 
               alt={`upload-${index}`} 
               style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
-              onClick={() => openModal(image)}
-            />
+              onClick={() => openModal(image)}/>
+            ) : (
+            //   <img class="img-fluid img-rounded"
+            //   key={index} 
+            //   src={image} 
+            //   alt={`upload-${index}`} 
+            //   style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+            //   onClick={() => openModal(image)}
+            // />
+            <Image cloudName="djjpfyknl" publicId={image}
+              class="img-fluid img-rounded"
+              key={index} 
+              src={image} 
+              alt={`upload-${index}`} 
+              style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+              onClick={() => openModal(image)} />
             )}
             
           </div>

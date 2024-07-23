@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
 
 const Blog = () => {
@@ -49,14 +50,41 @@ const Blog = () => {
       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
         {uploadedImages.map((image, index) => (
           <div class="post-media wow fadeIn">
-            <img class="img-fluid img-rounded"
-              key={index} 
-              src={image} 
-              alt={`upload-${index}`} 
-              style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
-              onClick={() => openModal(image)}
-            />
-          </div>
+          {image.endsWith('.mp4') ? (
+            <Video cloudName="djjpfyknl" publicId={image} controls 
+            class="img-fluid img-rounded"
+            key={index} 
+            src={image} 
+            alt={`upload-${index}`} 
+            style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+            onClick={() => openModal(image)}/>
+          ) : (
+          //   <img class="img-fluid img-rounded"
+          //   key={index} 
+          //   src={image} 
+          //   alt={`upload-${index}`} 
+          //   style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+          //   onClick={() => openModal(image)}
+          // />
+          <Image cloudName="djjpfyknl" publicId={image}
+            class="img-fluid img-rounded"
+            key={index} 
+            src={image} 
+            alt={`upload-${index}`} 
+            style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+            onClick={() => openModal(image)} />
+          )}
+          
+        </div>
+          // <div class="post-media wow fadeIn">
+          //   <img class="img-fluid img-rounded"
+          //     key={index} 
+          //     src={image} 
+          //     alt={`upload-${index}`} 
+          //     style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+          //     onClick={() => openModal(image)}
+          //   />
+          // </div>
         ))}
       </div>
 
