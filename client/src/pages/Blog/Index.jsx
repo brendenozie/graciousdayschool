@@ -105,7 +105,31 @@ const Blog = () => {
           }}
         >
           <button onClick={closeModal} style={{ float: 'right' }}>Close</button>
-          <img src={selectedImage} alt="Selected" style={{ width: '100%', height: 'auto', maxHeight: '550px' }} />
+          {/* <img src={selectedImage} alt="Selected" style={{ width: '100%', height: 'auto', maxHeight: '550px' }} /> */}
+          {selectedImage.endsWith('.mp4') ? (
+            <Video cloudName="djjpfyknl" publicId={selectedImage} controls 
+            class="img-fluid img-rounded"
+            key={index} 
+            src={selectedImage} 
+            alt={`upload-${index}`} 
+            style={{ width: '100%', height: 'auto', maxHeight: '550px' }}
+            onClick={() => openModal(selectedImage)}/>
+          ) : (
+          //   <img class="img-fluid img-rounded"
+          //   key={index} 
+          //   src={image} 
+          //   alt={`upload-${index}`} 
+          //   style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+          //   onClick={() => openModal(image)}
+          // />
+          <Image cloudName="djjpfyknl" publicId={selectedImage}
+            class="img-fluid img-rounded"
+            key={index} 
+            src={selectedImage} 
+            alt={`upload-${index}`} 
+            style={{ width: '100%', height: 'auto', maxHeight: '550px' }}
+            onClick={() => openModal(selectedImage)} />
+          )}
         </Modal>
       )}
       </div>{/* end container */}
