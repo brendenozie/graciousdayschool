@@ -27,6 +27,7 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, ...props }) => {
   }, [inView, src]);
 
   return (
+    <>
     <div ref={inViewRef} {...props}>
       {loading && error && <div>Loading...</div>}
       {/* {error && <img src={fallbackSrc} alt="Fallback" />} */}
@@ -45,10 +46,11 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, ...props }) => {
         alt={alt} 
         style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
         onClick={() => onclick()} />
-      )}
-      
-      
+      )}       
     </div>
+
+<p style={{ marginTop: '10px', marginBottom: '20px' }}>{alt}</p>
+</>
   );
 };
 
