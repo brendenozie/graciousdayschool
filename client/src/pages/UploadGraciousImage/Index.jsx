@@ -40,7 +40,7 @@ const UploadGr = () => {
     try {
       const response = await axios.get('https://graciousdayschool.vercel.app/api/images');
       console.log(response);
-      const imageUrls = response.data.map(image => ({ url: image.secure_url, description: image.context && image.context.custom.alt ? image.context.custom.alt : '' }));
+      const imageUrls = response.data.map(image => ({ url: image.secure_url,publicId: image.public_id, description: image.context && image.context.custom.alt ? image.context.custom.alt : '' }));
       setUploadedImages(imageUrls);
     } catch (error) {
       console.error('Error fetching images:', error);
@@ -189,7 +189,7 @@ const UploadGr = () => {
                 }}
               >
                 <button onClick={closeModal} style={{ float: 'right' }}>Close</button>
-                <button onClick={() => deleteFile(selectedImage.url)} style={{ float: 'left' }}>Delete</button>
+                <button onClick={() => deleteFile(selectedImage.publicId)} style={{ float: 'left' }}>Delete</button>
                 <img src={selectedImage.url} alt="Selected" style={{ width: '100%', height: 'auto', maxHeight: '550px' }} />
                 {selectedImage.description && <p>{selectedImage.description}</p>}
               </Modal>
