@@ -38,8 +38,9 @@ const UploadGr = () => {
 
   const fetchImages = async () => {
     try {
+      setUploadedImages([]);
       const response = await axios.get('https://graciousdayschool.vercel.app/api/images');
-      console.log(response);
+      // console.log(response);
       const imageUrls = response.data.map(image => ({ url: image.secure_url,publicId: image.public_id, description: image.context && image.context.custom.alt ? image.context.custom.alt : '' }));
       setUploadedImages(imageUrls);
     } catch (error) {
@@ -51,7 +52,7 @@ const UploadGr = () => {
     try {
       setLoading(true);
       await axios.post('https://graciousdayschool.vercel.app/api/delete', { publicId });
-      setUploadedImages((prevUrls) => prevUrls.filter(image => !image.url.includes(publicId)));
+      // setUploadedImages((prevUrls) => prevUrls.filter(image => !image.url.includes(publicId)));
       setLoading(false);
       setSelectedImage(null);
       fetchImages();
@@ -84,11 +85,10 @@ const UploadGr = () => {
     uploadImages(images, descriptions).then((results) => {
       results.forEach((result, index) => {
         if (result.success) {
-          console.log(`Image ${index + 1} uploaded successfully:`, result.data);
-          setUploadedImages([...uploadedImages, { url: result.data.secure_url, description: descriptions[index] }]);
+          // console.log(`Image ${index + 1} uploaded successfully:`, result.data);
+          // setUploadedImages([...uploadedImages, { url: result.data.secure_url, description: descriptions[index] }]);
           setLoading(false);
           setError(false);
-          fetchImages();
         } else {
           console.error(`Error uploading image ${index + 1}:`, result.error);
           setError(true);
@@ -97,6 +97,9 @@ const UploadGr = () => {
       });
       if(!loading && !error){
         alert('Uploaded Successfully');
+        setImages([]);
+        setDescriptions([]);
+        fetchImages();
       }
     });
   };
