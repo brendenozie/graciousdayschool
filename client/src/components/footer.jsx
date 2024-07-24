@@ -10,7 +10,7 @@ export const Footer = (props) => {
                             <div class="widget-title">
                                 <h3>About US</h3>
                             </div>
-                            <p> The learning  centre in komarocks sector one, Embakasi East in Nairobi Kenya which offers quality 
+                            <p> The learning  centre in komarocks sector one and  in Kayole, Embakasi East in Nairobi Kenya which offers quality 
     and affordable education  from Early Childhood  to primary level to the  low class and vulnerable children 
     in the community.</p>   
                             <div class="footer-right">
