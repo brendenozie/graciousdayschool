@@ -28,7 +28,7 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, ...props }) => {
 
   return (
     <>
-    <div ref={inViewRef} {...props}>
+    <div ref={inViewRef} {...props} class="section-title">
       {loading && error && <div>Loading...</div>}
       {/* {error && <img src={fallbackSrc} alt="Fallback" />} */}
       {!loading && !error && 
@@ -49,7 +49,7 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, ...props }) => {
       )}       
     </div>
 
-<p style={{ marginTop: '10px', marginBottom: '20px' }}>{alt}</p>
+<h5 style={{ marginLeft:'10px',marginRight:'5px', marginTop: '10px', marginBottom: '20px', overflow: 'hidden', fontWeight: '500',fontSize:'10px' }}>{alt}</h5>
 </>
   );
 };

@@ -53,11 +53,14 @@ const Blog = () => {
         {uploadedImages.map((image, index) => (
           <div class="post-media wow fadeIn">
             <Suspense fallback={<div>Loading...</div>}>
-            <LazyImage src={image}
-                        alt="Sample Image"
-                        fallbackSrc={image}
-                        onClick={() => openModal(image)}
-                        style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}/>
+            
+            <LazyImage 
+                      src={image.url}
+                      alt={image.description || "Students"}
+                      fallbackSrc={image.url}
+                      onClick={() => openModal(image)}
+                      style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+                    />
           {/* {image.endsWith('.mp4') ? (
             <Video cloudName="djjpfyknl" publicId={image} controls 
             class="img-fluid img-rounded"
@@ -115,13 +118,13 @@ const Blog = () => {
         >
           <button onClick={closeModal} style={{ float: 'right' }}>Close</button>
           {/* <img src={selectedImage} alt="Selected" style={{ width: '100%', height: 'auto', maxHeight: '550px' }} /> */}
-          {selectedImage.endsWith('.mp4') ? (
-            <Video cloudName="djjpfyknl" publicId={selectedImage} controls 
+          {selectedImage.url.includes('.mp4') ? (
+            <Video cloudName="djjpfyknl" publicId={selectedImage.publicId} controls 
             class="img-fluid img-rounded"
-            src={selectedImage} 
-            alt={`view`} 
+            src={selectedImage.url} 
+            alt={selectedImage.description} 
             style={{ width: '100%', height: 'auto', maxHeight: '550px' }}
-            onClick={() => openModal(selectedImage)}/>
+            onClick={() => {}}/>
           ) : (
           //   <img class="img-fluid img-rounded"
           //   key={index} 
@@ -130,12 +133,12 @@ const Blog = () => {
           //   style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
           //   onClick={() => openModal(image)}
           // />
-          <Image cloudName="djjpfyknl" publicId={selectedImage}
+          <Image cloudName="djjpfyknl" publicId={selectedImage.publicId}
             class="img-fluid img-rounded"
-            src={selectedImage} 
-            alt={`view`} 
+            src={selectedImage.url} 
+            alt={selectedImage.description} 
             style={{ width: '100%', height: 'auto', maxHeight: '550px' }}
-            onClick={() => openModal(selectedImage)} />
+            onClick={() => {}} />
           )}
         </Modal>
       )}
