@@ -111,7 +111,8 @@ app.get('/api/images', async (req, res) => {
     const { resources } = await cloudinary.api.resources({
       type: 'upload',
       //prefix: 'school/', // Optional: Specify folder name if you organize your images in folders
-      max_results: 50 // Adjust as needed
+      max_results: 50, // Adjust as needed
+      context: true
     });
     res.send(resources);
   } catch (error) {
