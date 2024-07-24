@@ -4,26 +4,27 @@ import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
 const LazyImage = lazy(() => import('../../components/LazyImage'));
 
+
 const Blog = () => {
   const [images, setImages] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await axios.get('https://graciousdayschool.vercel.app/api/images');
-        const imageUrls = response.data.map(image => image.secure_url);
-        setUploadedImages(imageUrls);
-      } catch (error) {
-        console.error('Error fetching images:', error);
-      }
-    };
+  const fetchImages = async () => {
+    try {
+      setUploadedImages([]);
+      const response = await axios.get('https://graciousdayschool.vercel.app/api/images');
+      // console.log(response);
+      const imageUrls = response.data.map(image => ({ url: image.secure_url, description: image.context && image.context.custom.alt ? image.context.custom.alt : '' }));
+      setUploadedImages(imageUrls);
+    } catch (error) {
+      console.error('Error fetching images:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchImages();
   }, []);
-
-
 
   const openModal = (image) => {
     setSelectedImage(image);
