@@ -127,7 +127,7 @@ const HomeMainbar = () => {
                         <div class="message-box">
                             <h4>Started in 2004</h4>
                             <h2>Welcome to Gracious Imabet Day education centre</h2>
-                            <p>A learning  centre in komarocks sector one, Embakasi East in Nairobi Kenya which offers quality 
+                            <p>A learning  centre in komarocks sector one and in kayole, Embakasi East in Nairobi Kenya which offers quality 
     and affordable education  from Early Childhood  to primary level to the  low class and vulnerable children 
     in the community.</p>
 
