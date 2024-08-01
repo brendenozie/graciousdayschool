@@ -69,8 +69,8 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
         //   responseType: 'blob',
         // });
         const url = src;//URL.createObjectURL(result.data);
-        setImageUrl(url);
-        cacheImage(publicId,url);
+        setImageUrl(src);
+        cacheImage(publicId,src);
         setError(false);
       }
     } catch (err) {
