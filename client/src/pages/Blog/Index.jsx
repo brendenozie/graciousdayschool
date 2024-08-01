@@ -56,6 +56,7 @@ const Blog = () => {
             
             <LazyImage 
                       src={image.url}
+                      publicId={image.public_id}
                       alt={image.description || "Students"}
                       fallbackSrc={image.url}
                       onClick={() => openModal(image)}

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Image, Video } from 'cloudinary-react';
+import { Image, Video, Transformation  } from 'cloudinary-react';
 
-const LazyImage = ({ src, alt, onclick, fallbackSrc, ...props }) => {
+const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
   const [inViewRef, inView] = useInView({ triggerOnce: true });
   const [imageSrc, setImageSrc] = useState(fallbackSrc);
   const [loading, setLoading] = useState(true);
@@ -43,12 +43,15 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, ...props }) => {
           style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
           onClick={() => onclick()}/>
       ) : (
-      <Image cloudName="djjpfyknl" publicId={imageSrc}
+      <Image cloudName="djjpfyknl" 
+        publicId={publicId}
         class="img-fluid img-rounded"
         src={imageSrc} 
         alt={alt} 
         style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
-        onClick={() => onclick()} />
+        onClick={() => onclick()} >
+          <Transformation quality="auto" fetchFormat="auto" />
+        </Image>
       )}       
     </div>
 
