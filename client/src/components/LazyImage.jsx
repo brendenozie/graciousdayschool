@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useInView } from 'react-intersection-observer';
-
+import axios from 'axios';
 import { Image, Video, Transformation  } from 'cloudinary-react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const retryInterval = 2000
 
