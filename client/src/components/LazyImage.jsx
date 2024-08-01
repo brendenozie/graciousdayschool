@@ -3,6 +3,8 @@ import { useInView } from 'react-intersection-observer';
 
 import { Image, Video, Transformation  } from 'cloudinary-react';
 
+const retryInterval = 2000
+
 const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
   const [inViewRef, inView] = useInView({ triggerOnce: true });
   const [imageSrc, setImageSrc] = useState(fallbackSrc);
@@ -95,10 +97,10 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
       {loading && error && <div>Loading...</div>}
       {/* {error && <img src={fallbackSrc} alt="Fallback" />} */}
       {!loading && !error && 
-      imageSrc.includes('.mp4') ? (
-        <Video cloudName="djjpfyknl" publicId={imageSrc} controls 
+      imageUrl.includes('.mp4') ? (
+        <Video cloudName="djjpfyknl" publicId={imageUrl} controls 
           class="img-fluid img-rounded"
-          src={imageSrc} 
+          src={imageUrl} 
           alt={alt} 
           style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
           onClick={() => onclick()}/>
