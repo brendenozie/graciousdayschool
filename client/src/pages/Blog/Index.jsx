@@ -36,22 +36,25 @@ const Blog = () => {
     setSelectedImage(null);
   };
 
+  const loadMoreImages = () => {
+    setVisibleImages((prev) => {
+      const nextBatch = uploadedImages.slice(prev.length, prev.length + BATCH_SIZE);
+          return [...prev, ...nextBatch];
+    });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
-        setVisibleImages((prev) => {
-          const nextBatch = uploadedImages.slice(prev.length, prev.length + BATCH_SIZE);
-          return [...prev, ...nextBatch];
-        });
-      }else if (window.innerHeight + document.documentElement.scrollTop <= document.documentElement.offsetHeight){
-        setVisibleImages((prev) => {
-          const nextBatch = uploadedImages.slice(prev.length, prev.length + BATCH_SIZE);
-          return [...prev, ...nextBatch];
-        });
+        loadMoreImages();
       }
     };
 
     window.addEventListener('scroll', handleScroll);
+
+    // Initial load of images
+    loadMoreImages();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, [uploadedImages]);
 
