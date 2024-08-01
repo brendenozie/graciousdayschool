@@ -65,10 +65,10 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
         setImageUrl(cachedImageUrl);
         setError(false);
       } else {
-        const result = await axios.get(`https://res.cloudinary.com/djjpfyknl/image/upload/${publicId}`, {
-          responseType: 'blob',
-        });
-        const url = URL.createObjectURL(result.data);
+        // const result = await axios.get(`https://res.cloudinary.com/djjpfyknl/image/upload/${publicId}`, {
+        //   responseType: 'blob',
+        // });
+        const url = src;//URL.createObjectURL(result.data);
         setImageUrl(url);
         cacheImage(url);
         setError(false);
