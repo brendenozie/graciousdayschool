@@ -4,7 +4,7 @@ import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
 const LazyImage = lazy(() => import('../../components/LazyImage'));
 
-const BATCH_SIZE = 10;
+const BATCH_SIZE = 5;
 
 const Blog = () => {
   const [images, setImages] = useState([]);

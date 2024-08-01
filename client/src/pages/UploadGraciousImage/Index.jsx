@@ -8,7 +8,7 @@ const LazyImage = lazy(() => import('../../components/LazyImage'));
 const url = `https://api.cloudinary.com/v1_1/djjpfyknl/image/upload`;
 const uploadPreset = 'school';
 
-const BATCH_SIZE = 15;
+const BATCH_SIZE = 5;
 
 
 const uploadImages = async (images, descriptions) => {
