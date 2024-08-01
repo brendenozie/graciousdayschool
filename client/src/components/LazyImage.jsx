@@ -76,7 +76,7 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
     } catch (err) {
       setError(true);
     }
-  }, [publicId]);
+  }, [publicId,src]);
 
   useEffect(() => {
     if (error) {
