@@ -8,6 +8,9 @@ const LazyImage = lazy(() => import('../../components/LazyImage'));
 const url = `https://api.cloudinary.com/v1_1/djjpfyknl/image/upload`;
 const uploadPreset = 'school';
 
+const BATCH_SIZE = 10;
+
+
 const uploadImages = async (images, descriptions) => {
   const uploadResponses = await Promise.all(
     images.map(async (image, index) => {
@@ -35,6 +38,7 @@ const UploadGr = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [visibleImages, setVisibleImages] = useState(images.slice(0, BATCH_SIZE));
 
   const fetchImages = async () => {
     try {
@@ -112,6 +116,20 @@ const UploadGr = () => {
     setSelectedImage(null);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
+        setVisibleImages((prev) => {
+          const nextBatch = uploadedImages.slice(prev.length, prev.length + BATCH_SIZE);
+          return [...prev, ...nextBatch];
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [uploadedImages]);
+
   return (
     <>
       <div>
@@ -161,7 +179,7 @@ const UploadGr = () => {
               </div>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '120px' }}>
-              {uploadedImages.map((image, index) => (
+              {visibleImages.map((image, index) => (
                 <div className="post-media wow fadeIn" key={index}>
                   <Suspense fallback={<div>Loading...</div>}>
                     <LazyImage 

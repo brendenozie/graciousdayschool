@@ -4,11 +4,13 @@ import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
 const LazyImage = lazy(() => import('../../components/LazyImage'));
 
+const BATCH_SIZE = 10;
 
 const Blog = () => {
   const [images, setImages] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [visibleImages, setVisibleImages] = useState(images.slice(0, BATCH_SIZE));
 
   const fetchImages = async () => {
     try {
@@ -34,6 +36,20 @@ const Blog = () => {
     setSelectedImage(null);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
+        setVisibleImages((prev) => {
+          const nextBatch = uploadedImages.slice(prev.length, prev.length + BATCH_SIZE);
+          return [...prev, ...nextBatch];
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [uploadedImages]);
+
   return (
 
     <div>
@@ -50,7 +66,7 @@ const Blog = () => {
 
 
       <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
-        {uploadedImages.map((image, index) => (
+        {visibleImages.map((image, index) => (
           <div class="post-media wow fadeIn">
             <Suspense fallback={<div>Loading...</div>}>
             
