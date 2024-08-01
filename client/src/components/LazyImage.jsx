@@ -96,6 +96,8 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
     <div ref={inViewRef} {...props} class="section-title">
       {loading && error && <div>Loading...</div>}
       {/* {error && <img src={fallbackSrc} alt="Fallback" />} */}
+      
+      <Suspense fallback={<div>Loading...</div>}>
       {!loading && !error && 
       imageUrl.includes('.mp4') ? (
         <Video cloudName="djjpfyknl" publicId={imageUrl} controls 
@@ -114,10 +116,13 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
       //   onClick={() => onclick()} >
       //     <Transformation quality="auto" fetchFormat="auto" />
       //   </Image>
-      <Suspense fallback={<div>Loading...</div>}>
+      
         <img src={imageUrl} alt="Cloudinary" style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }} loading="lazy"/>
-        </Suspense>
-      )}       
+        
+      )
+      }      
+      
+      </Suspense> 
     </div>
 
 <h5 style={{ marginLeft:'10px',marginRight:'5px', marginTop: '10px', marginBottom: '20px', overflow: 'hidden', fontWeight: '500',fontSize:'10px' }}>{alt}</h5>
