@@ -154,6 +154,49 @@ const UploadGr = () => {
       <div>
       <div id="overviews" className="section lb">
         <div className="container">
+        <div className="section-title row">
+              <div className="col-md-8 offset-md-2">
+                <h3>Upload Images</h3>
+                <p className="lead"></p>
+              </div>
+            </div>
+            <div className="section-title row">
+              <div className="col-md-8 offset-md-2">
+                <h5>1. Click here to select your images </h5>
+                <h5>2. Add descriptions (optional)</h5>
+                <h5>3. Click upload to upload your images </h5>
+                <div style={{ marginTop: "15px" }}>
+                  <input 
+                    type="file" 
+                    accept="image/jpeg,image/png,image/gif,video/mp4,video/webm"
+                    multiple 
+                    onChange={handleImageChange} 
+                  />
+                </div>
+                <div style={{ marginTop: "15px" }}>
+                  {images.map((image, index) => (
+                    <div key={index} style={{ marginBottom: '10px' }}>
+                      <input 
+                        type="text" 
+                        placeholder={`Description for image ${index + 1}`} 
+                        onChange={(e) => handleDescriptionChange(index, e.target.value)}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div style={{ marginTop: "15px" }}>
+                  {!loading && error ? <div>Too Large Cannot Upload</div> : <div></div>}
+                  {loading && !error ? (
+                    <div style={{ position: 'fixed', marginTop: "-70px" }}>
+                      <Loader style={{ width: '90px', height: '70px' }}/>
+                      <p style={{ fontSize: "small", fontWeight: "bold", position: 'relative', zIndex: '11400' }}>Uploading</p>
+                    </div>
+                  ) : (
+                    <button className="orange" onClick={handleUpload}>Upload</button>
+                  )}
+                </div>
+              </div>
+            </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
             {visibleImages.map((image, index) => (
               <div className="post-media wow fadeIn" key={index}>
