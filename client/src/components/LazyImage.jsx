@@ -1,132 +1,72 @@
-import React, { useState, useEffect, Suspense,useCallback } from 'react';
+import React, { useState, useEffect, Suspense, useCallback } from 'react';
 import { useInView } from 'react-intersection-observer';
-import axios from 'axios';
-import { Image, Video, Transformation  } from 'cloudinary-react';
+import { Image, Video, Transformation } from 'cloudinary-react';
 
-const retryInterval = 2000
-
-const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
+const LazyImage = ({ src, alt, onClick, fallbackSrc, publicId, ...props }) => {
   const [inViewRef, inView] = useInView({ triggerOnce: true });
-  const [imageSrc, setImageSrc] = useState(fallbackSrc);
+  const [imageSrc, setImageSrc] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  
-  const [imageUrl, setImageUrl] = useState('');
 
-  // useEffect(() => {
-  //   if (inView && src) {
-  //     setLoading(true);
-  //     setError(false);
-  //     const img = new Image();
-  //     img.src = src;
-  //     img.onload = () => {
-  //       setTimeout(() => {
-  //         setImageSrc(src);
-  //         setLoading(false);
-  //       }, 3000);
-       
-  //     };
-  //     img.onerror = () => {
-  //       setTimeout(() => {
-  //         setImageSrc(src);
-  //         setLoading(false);
-  //       }, 5000);
-  //     };
-  //   }
-  // }, [inView, src]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const cacheImage = (publicId,url) => {
-    localStorage.setItem(publicId, url);
-  };
-
-  const getCachedImage = () => {
-    return localStorage.getItem(publicId);
-  };
-
-  const fetchImage = useCallback(async () => {
-    try {
-      const cachedImageUrl = getCachedImage();
-      if (cachedImageUrl) {
-        setImageUrl(cachedImageUrl);
-        setError(false);
-      } else {
-        // const result = await axios.get(`https://res.cloudinary.com/djjpfyknl/image/upload/${publicId}`, {
-        //   responseType: 'blob',
-        // });
-        const url = src;//URL.createObjectURL(result.data);
-        setImageUrl(src);
-        cacheImage(publicId,src);
-        setError(false);
-      }
-    } catch (err) {
-      setError(true);
+  const loadImage = useCallback(() => {
+    if (src) {
+      setLoading(true);
+      setError(false);
+      const img = new window.Image();
+      img.src = src;
+      img.onload = () => {
+        setImageSrc(src);
+        setLoading(false);
+      };
+      img.onerror = () => {
+        console.error(`Error loading image: ${src}`);
+        setError(true);
+        setLoading(false);
+      };
     }
-  }, [publicId,src]);
+  }, [src]);
+
+  useEffect(() => {
+    if (inView) {
+      loadImage();
+    }
+  }, [inView, loadImage]);
 
   useEffect(() => {
     if (error) {
-      const timer = setTimeout(() => {
-        fetchImage();
-      }, retryInterval);
-      return () => clearTimeout(timer);
+      const retryTimeout = setTimeout(() => {
+        loadImage();
+      }, 3000);
+      return () => clearTimeout(retryTimeout);
     }
-  }, [error, fetchImage, retryInterval]);
-
-  useEffect(() => {
-    fetchImage();
-  }, [fetchImage]);
+  }, [error, loadImage]);
 
   return (
-    <>
-    <div ref={inViewRef} {...props} class="section-title">
-      {loading && error && <div>Loading...</div>}
-      {/* {error && <img src={fallbackSrc} alt="Fallback" />} */}
-      
-      <Suspense fallback={<div>Loading...</div>}>
-      {!loading && !error && 
-      imageUrl.includes('.mp4') ? (
-        <Video cloudName="djjpfyknl" publicId={imageUrl} controls 
-          class="img-fluid img-rounded"
-          src={imageUrl} 
-          alt={alt} 
-          style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
-          onClick={() => onclick()}/>
-      ) : (
-      // <Image cloudName="djjpfyknl" 
-      //   publicId={publicId}
-      //   class="img-fluid img-rounded"
-      //   src={imageSrc} 
-      //   alt={alt} 
-      //   style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
-      //   onClick={() => onclick()} >
-      //     <Transformation quality="auto" fetchFormat="auto" />
-      //   </Image>
-      
-        <img src={imageUrl} alt="Cloudinary" style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }} loading="lazy"/>
-        
-      )
-      }      
-      
-      </Suspense> 
-    </div>
-
-<h5 style={{ marginLeft:'10px',marginRight:'5px', marginTop: '10px', marginBottom: '20px', overflow: 'hidden', fontWeight: '500',fontSize:'10px' }}>{alt}</h5>
-</>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div ref={inViewRef} {...props} className="section-title">
+        {loading && !error && <div>Loading...</div>}
+        {error && fallbackSrc && <img src={fallbackSrc} alt="Fallback" />}
+        {!loading && !error && imageSrc.includes('.mp4') ? (
+          <Video cloudName="djjpfyknl" publicId={publicId} controls 
+            className="img-fluid img-rounded"
+            src={imageSrc} 
+            alt={alt} 
+            style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+            onClick={onClick} />
+        ) : (
+          <Image cloudName="djjpfyknl" 
+            publicId={publicId}
+            className="img-fluid img-rounded"
+            src={imageSrc} 
+            alt={alt} 
+            style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
+            onClick={onClick}>
+              <Transformation quality="auto" fetchFormat="auto" />
+          </Image>
+        )}
+      </div>
+      <h5 style={{ marginLeft: '10px', marginRight: '5px', marginTop: '10px', marginBottom: '20px', overflow: 'hidden', fontWeight: '500', fontSize: '10px' }}>{alt}</h5>
+    </Suspense>
   );
 };
 
