@@ -50,7 +50,7 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
 
 
 
-  const cacheImage = (url) => {
+  const cacheImage = (publicId,url) => {
     localStorage.setItem(publicId, url);
   };
 
@@ -70,7 +70,7 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, publicId, ...props }) => {
         // });
         const url = src;//URL.createObjectURL(result.data);
         setImageUrl(url);
-        cacheImage(url);
+        cacheImage(publicId,url);
         setError(false);
       }
     } catch (err) {
