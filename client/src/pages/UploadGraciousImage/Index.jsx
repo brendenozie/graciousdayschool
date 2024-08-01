@@ -123,6 +123,11 @@ const UploadGr = () => {
           const nextBatch = uploadedImages.slice(prev.length, prev.length + BATCH_SIZE);
           return [...prev, ...nextBatch];
         });
+      }else if (window.innerHeight + document.documentElement.scrollTop <= document.documentElement.offsetHeight){
+        setVisibleImages((prev) => {
+          const nextBatch = uploadedImages.slice(prev.length, prev.length + BATCH_SIZE);
+          return [...prev, ...nextBatch];
+        });
       }
     };
 
