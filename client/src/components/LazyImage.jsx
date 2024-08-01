@@ -16,8 +16,11 @@ const LazyImage = ({ src, alt, onclick, fallbackSrc, ...props }) => {
       const img = new Image();
       img.src = src;
       img.onload = () => {
-        setImageSrc(src);
-        setLoading(false);
+        setTimeout(() => {
+          setImageSrc(src);
+          setLoading(false);
+        }, 3000);
+       
       };
       img.onerror = () => {
         setError(true);
