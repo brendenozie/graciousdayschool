@@ -2,9 +2,9 @@ import React, { useState, useEffect, Suspense, lazy, useCallback } from 'react';
 import axios from 'axios';
 import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
+import Loader from '../../components/loader';
 
-const LazyImage = lazy(() => import('../../components/LazyImage'));
-//const LazyImage = lazy(() => import('./LazyImage')); // Adjust the import path as needed
+const LazyImage = lazy(() => import('../../components/LazyImage')); // Adjust the import path as needed
 const BATCH_SIZE = 20; // Number of images to load per batch
 
 const Blog = () => {
@@ -91,7 +91,8 @@ const Blog = () => {
                     src={image.url}
                     publicId={image.publicId}
                     alt={image.description || "Students"}
-                    fallbackSrc={image.url}
+                    fallbackSrc={"https://via.placeholder.com/220" }
+                    loadingImage="https://via.placeholder.com/220" // Your loading image URL
                     onClick={() => openModal(image)}
                     style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
                   />

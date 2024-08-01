@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense, useCallback } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Image, Video, Transformation } from 'cloudinary-react';
 
-const LazyImage = ({ src, alt, onClick, fallbackSrc, publicId, ...props }) => {
+const LazyImage = ({ src, alt, onClick, fallbackSrc, publicId, loadingImage, ...props }) => {
   const [inViewRef, inView] = useInView({ triggerOnce: true });
   const [imageSrc, setImageSrc] = useState('');
   const [loading, setLoading] = useState(true);
@@ -44,24 +44,26 @@ const LazyImage = ({ src, alt, onClick, fallbackSrc, publicId, ...props }) => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div ref={inViewRef} {...props} className="section-title">
-        {loading && !error && <div>Loading...</div>}
+        {loading && !error && loadingImage && (
+          <img src={loadingImage} alt="Loading" style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px' }} />
+        )}
         {error && fallbackSrc && <img src={fallbackSrc} alt="Fallback" />}
         {!loading && !error && imageSrc.includes('.mp4') ? (
-          <Video cloudName="djjpfyknl" publicId={publicId} controls 
+          <Video cloudName="djjpfyknl" publicId={publicId} controls
             className="img-fluid img-rounded"
-            src={imageSrc} 
-            alt={alt} 
+            src={imageSrc}
+            alt={alt}
             style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
             onClick={onClick} />
         ) : (
-          <Image cloudName="djjpfyknl" 
+          <Image cloudName="djjpfyknl"
             publicId={publicId}
             className="img-fluid img-rounded"
-            src={imageSrc} 
-            alt={alt} 
+            src={imageSrc}
+            alt={alt}
             style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
             onClick={onClick}>
-              <Transformation quality="auto" fetchFormat="auto" />
+            <Transformation quality="auto" fetchFormat="auto" />
           </Image>
         )}
       </div>

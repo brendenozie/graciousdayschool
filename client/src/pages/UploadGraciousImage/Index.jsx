@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense, lazy, useCallback } from 'react';
 import axios from 'axios';
 import { Image, Video } from 'cloudinary-react';
 import Modal from 'react-modal';
@@ -39,16 +39,23 @@ const UploadGr = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [visibleImages, setVisibleImages] = useState(images.slice(0, BATCH_SIZE));
+  const [allLoaded, setAllLoaded] = useState(false);
 
   const fetchImages = async () => {
     try {
-      setUploadedImages([]);
+      setLoading(true);
       const response = await axios.get('https://graciousdayschool.vercel.app/api/images');
-      // console.log(response);
-      const imageUrls = response.data.map(image => ({ url: image.secure_url,publicId: image.public_id, description: image.context && image.context.custom.alt ? image.context.custom.alt : '' }));
+      const imageUrls = response.data.map(image => ({
+        url: image.secure_url,
+        description: image.context && image.context.custom.alt ? image.context.custom.alt : '',
+        publicId: image.public_id
+      }));
       setUploadedImages(imageUrls);
+      setVisibleImages(imageUrls.slice(0, BATCH_SIZE));
     } catch (error) {
       console.error('Error fetching images:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -116,94 +123,60 @@ const UploadGr = () => {
     setSelectedImage(null);
   };
 
-  const loadMoreImages = () => {
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  const loadMoreImages = useCallback(() => {
     setVisibleImages((prev) => {
       const nextBatch = uploadedImages.slice(prev.length, prev.length + BATCH_SIZE);
-          return [...prev, ...nextBatch];
+      if (nextBatch.length === 0) {
+        setAllLoaded(true);
+      }
+      return [...prev, ...nextBatch];
     });
-  };
+  }, [uploadedImages]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
+      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 100) {
         loadMoreImages();
       }
     };
 
     window.addEventListener('scroll', handleScroll);
 
-    // Initial load of images
-    loadMoreImages();
-
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [uploadedImages]);
+  }, [loadMoreImages]);
 
   return (
     <>
       <div>
-        <div id="overviews" className="section lb">
-          <div className="container">
-            <div className="section-title row">
-              <div className="col-md-8 offset-md-2">
-                <h3>Upload Images</h3>
-                <p className="lead"></p>
-              </div>
-            </div>
-            <div className="section-title row">
-              <div className="col-md-8 offset-md-2">
-                <h5>1. Click here to select your images </h5>
-                <h5>2. Add descriptions (optional)</h5>
-                <h5>3. Click upload to upload your images </h5>
-                <div style={{ marginTop: "15px" }}>
-                  <input 
-                    type="file" 
-                    accept="image/jpeg,image/png,image/gif,video/mp4,video/webm"
-                    multiple 
-                    onChange={handleImageChange} 
+      <div id="overviews" className="section lb">
+        <div className="container">
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {visibleImages.map((image, index) => (
+              <div className="post-media wow fadeIn" key={index}>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <LazyImage
+                    src={image.url}
+                    publicId={image.publicId}
+                    alt={image.description || "Students"}
+                    fallbackSrc={"https://via.placeholder.com/220" }
+                    loadingImage="https://via.placeholder.com/220" // Your loading image URL
+                    onClick={() => openModal(image)}
+                    style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
                   />
-                </div>
-                <div style={{ marginTop: "15px" }}>
-                  {images.map((image, index) => (
-                    <div key={index} style={{ marginBottom: '10px' }}>
-                      <input 
-                        type="text" 
-                        placeholder={`Description for image ${index + 1}`} 
-                        onChange={(e) => handleDescriptionChange(index, e.target.value)}
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div style={{ marginTop: "15px" }}>
-                  {!loading && error ? <div>Too Large Cannot Upload</div> : <div></div>}
-                  {loading && !error ? (
-                    <div style={{ position: 'fixed', marginTop: "-70px" }}>
-                      <Loader style={{ width: '90px', height: '70px' }}/>
-                      <p style={{ fontSize: "small", fontWeight: "bold", position: 'relative', zIndex: '11400' }}>Uploading</p>
-                    </div>
-                  ) : (
-                    <button className="orange" onClick={handleUpload}>Upload</button>
-                  )}
-                </div>
+                </Suspense>
               </div>
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '120px' }}>
-              {visibleImages.map((image, index) => (
-                <div className="post-media wow fadeIn" key={index}>
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <LazyImage 
-                      src={image.url}
-                      publicId={image.public_id}
-                      alt={image.description || "Students"}
-                      fallbackSrc={'https://via.placeholder.com/220'}
-                      onClick={() => openModal(image)}
-                      style={{ width: '220px', height: '220px', objectFit: 'cover', margin: '5px', cursor: 'pointer' }}
-                    />
-                  </Suspense>
-                </div>
-              ))}
-            </div>
-            {selectedImage && (
-              <Modal
+            ))}
+          </div>
+
+          {loading && <div>Loading more images...</div>}
+          {allLoaded && <div>No more images to load.</div>}
+
+          {selectedImage && (
+          <Modal
                 isOpen={!!selectedImage}
                 onRequestClose={closeModal}
                 contentLabel="Image Modal"
@@ -223,9 +196,41 @@ const UploadGr = () => {
                 <img src={selectedImage.url} alt="Selected" style={{ width: '100%', height: 'auto', maxHeight: '550px' }} />
                 {selectedImage.description && <p>{selectedImage.description}</p>}
               </Modal>
-            )}
-          </div>
+            // <Modal
+            //   isOpen={!!selectedImage}
+            //   onRequestClose={closeModal}
+            //   contentLabel="Image Modal"
+            //   style={{
+            //     content: {
+            //       top: '50%',
+            //       left: '50%',
+            //       right: 'auto',
+            //       bottom: 'auto',
+            //       marginRight: '-50%',
+            //       transform: 'translate(-50%, -50%)'
+            //     }
+            //   }}
+            // >
+            //   <button onClick={closeModal} style={{ float: 'right' }}>Close</button>
+            //   {selectedImage.url.includes('.mp4') ? (
+            //     <Video cloudName="djjpfyknl" publicId={selectedImage.publicId} controls
+            //       className="img-fluid img-rounded"
+            //       src={selectedImage.url}
+            //       alt={selectedImage.description}
+            //       style={{ width: '100%', height: 'auto', maxHeight: '550px' }}
+            //     />
+            //   ) : (
+            //     <Image cloudName="djjpfyknl" publicId={selectedImage.publicId}
+            //       className="img-fluid img-rounded"
+            //       src={selectedImage.url}
+            //       alt={selectedImage.description}
+            //       style={{ width: '100%', height: 'auto', maxHeight: '550px' }}
+            //     />
+            //   )}
+            // </Modal>
+          )}
         </div>
+      </div>
       </div>
     </>
   );
